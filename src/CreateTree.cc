@@ -25,8 +25,8 @@ CreateTree::CreateTree(TString name, bool energy_fiber, bool init_data, bool pos
   
   this->GetTree()->Branch("Event",&this->Event,"Event/I");
   
-  this->GetTree()->Branch("Tot_phot_cer",		   &this->Tot_phot_cer,			 "Tot_phot_cer/F");
-  this->GetTree()->Branch("Tot_phot_scint",		   &this->Tot_phot_scint,			 "Tot_phot_scint/F");
+//   this->GetTree()->Branch("Tot_phot_cer",		   &this->Tot_phot_cer,			 "Tot_phot_cer/F");
+//   this->GetTree()->Branch("Tot_phot_scint",		   &this->Tot_phot_scint,			 "Tot_phot_scint/F");
   
 //   this->GetTree()->Branch("Total_delta_world",        &this->Total_delta_world,        "Total_delta_world/F");
 //   this->GetTree()->Branch("Total_energy_world",       &this->Total_energy_world,       "Total_energy_world/F");
@@ -75,7 +75,6 @@ CreateTree::CreateTree(TString name, bool energy_fiber, bool init_data, bool pos
     this->GetTree()->Branch("opPhoton_n_det",&this->opPhoton_n_det,"opPhoton_n_det/I");
     this->GetTree()->Branch("opPhoton_n_det_type",&this->opPhoton_n_det_type);
        
-    this->GetTree()->Branch("opPhoton_process_det",&opPhoton_process_det);
     this->GetTree()->Branch("opPhoton_waveLength_det",&opPhoton_waveLength_det);
     this->GetTree()->Branch("opPhoton_time_det",&opPhoton_time_det);
     this->GetTree()->Branch("opPhoton_trackLength_det",&opPhoton_trackLength_det);
@@ -107,14 +106,14 @@ bool CreateTree::Write()
 void CreateTree::Clear()
 {
   Event	= 0;
-  
+  /*
   Tot_phot_cer = 0;
-  Tot_phot_scint = 0;
-  
+  Tot_phot_scint = 0;*/
+  /*
   Total_delta_world         = 0;
   Total_energy_world        = 0;
   Total_ion_energy_world    = 0;
-  Total_nonion_energy_world = 0;
+  Total_nonion_energy_world = 0;*/
   
   if( this->INIT_DATA )
   {
@@ -149,36 +148,15 @@ void CreateTree::Clear()
   
   if( this->OPPHOTONS )
   {
-    
-//     opPhoton_process.clear();
-//     opPhoton_trackID.clear();
-//     opPhoton_parentTrackID.clear();
-//     opPhoton_fiberIX.clear();
-//     opPhoton_fiberIZ.clear();
-//     opPhoton_energy.clear();
-//     opPhoton_waveLength.clear();
-//     opPhoton_time.clear();
-//     opPhoton_vertexX.clear();
-//     opPhoton_vertexY.clear();
-//     opPhoton_vertexZ.clear();
-//     opPhoton_pX.clear();
-//     opPhoton_pY.clear();
-//     opPhoton_pZ.clear();
 
-//     for (int i = 0; i < 25; i++) {
-      opPhoton_n = 0;
-      opPhoton_n_type.clear();
+    opPhoton_n = 0;
+    opPhoton_n_type.clear();
       
-      opPhoton_n_ext = 0;
-      opPhoton_n_ext_type.clear();
+    opPhoton_n_ext = 0;
+    opPhoton_n_ext_type.clear();
       
-      opPhoton_n_det = 0;
-      opPhoton_n_det_type.clear();
-      
-//     }
-    
-    
-    opPhoton_process_det.clear();
+    opPhoton_n_det = 0;
+    opPhoton_n_det_type.clear();    
 
     opPhoton_waveLength_det.clear();
     opPhoton_time_det.clear();

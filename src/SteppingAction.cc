@@ -126,9 +126,7 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep)
     float delta = thePrePoint->GetTotalEnergy()/GeV - thePostPoint->GetTotalEnergy()/GeV;
     float energy = theStep->GetTotalEnergyDeposit()/GeV;
     float time_dep =  theTrack->GetGlobalTime()/nanosecond ;
-    
     float ion_energy = theStep->GetTotalEnergyDeposit()/GeV - theStep->GetNonIonizingEnergyDeposit()/GeV;
-    float nonion_energy = theStep->GetNonIonizingEnergyDeposit()/GeV;
     
     if( delta > 0  && thePrePVLogName == "EE_log")
     {	   
