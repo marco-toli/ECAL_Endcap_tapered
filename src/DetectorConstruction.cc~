@@ -131,6 +131,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   // logical
   G4LogicalVolume* EE_log = new G4LogicalVolume(EE_solid, ScMaterial, "EE_log", 0, 0, 0);
   G4LogicalVolume* EE_log_alveolar = new G4LogicalVolume(EE_solid_alveolar, MyMaterials::Aluminum(), "EE_log_alveolar", 0, 0, 0);
+//   G4LogicalVolume* EE_log_alveolar = new G4LogicalVolume(EE_solid_alveolar, MyMaterials::Air(), "EE_log_alveolar", 0, 0, 0);
   
   G4LogicalVolume* Grease_log = new G4LogicalVolume(Grease_solid, MyMaterials::OpticalGrease(), "Grease_log", 0, 0, 0);
   G4LogicalVolume* Win_log = new G4LogicalVolume(Win_solid, WiMaterial, "Win_log", 0, 0, 0);
@@ -152,7 +153,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
       G4VPhysicalVolume* Det_layer_rear_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, (crystal_length + depth)/2 + 2*win_l) , Det_layer_log, "Det_layer_phys", expHall_log, false, 0);
       G4VPhysicalVolume* Det_rear_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, (crystal_length  + det_d)/2 + 2*win_l + depth) , Det_log, "Det_phys", expHall_log, false, 0);
       
-      G4VPhysicalVolume* Front_al_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + win_l)/2) , Front_al_log, "Front_al_phys", expHall_log, false, 0);
+//       G4VPhysicalVolume* Front_al_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + win_l)/2) , Front_al_log, "Front_al_phys", expHall_log, false, 0);
     
 
     //
@@ -177,7 +178,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
         //----INTERNAL WRAPPING----//
 	    	    
 	    CrystalSurfaceSkin   = new G4LogicalBorderSurface("Lateral", EE_phys, EE_alveolar_phys, OpCrystalSurface);
-//     	    CrystalFrontSkin   = new G4LogicalBorderSurface("Front", EE_phys, Front_al_phys, OpCrystalSurface);
+     	    CrystalFrontSkin   = new G4LogicalBorderSurface("Front", EE_phys, Front_al_phys, OpCrystalSurface);
 
     }
     
