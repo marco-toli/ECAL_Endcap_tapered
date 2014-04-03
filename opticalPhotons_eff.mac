@@ -13,9 +13,95 @@
 /gps/ang/type iso
 /gps/polarization 1 0 0
 
-/gps/ene/type Gauss
-/gps/ene/mono	2.95 eV		# 420 nm
-/gps/ene/sigma 0.12 eV		# 18 nm
+#/gps/ene/type Gauss
+#/gps/ene/mono	2.95 eV		# 420 nm
+#/gps/ene/sigma 0.12 eV		# 18 nm
+
+/gps/ene/type User
+#/gps/ene/diffspec true
+/gps/hist/type energy
+
+/gps/hist/point	1.77142857142857E-006	0.001
+/gps/hist/point	1.7841726618705E-006	0.001
+/gps/hist/point	1.79710144927536E-006	0.001
+/gps/hist/point	1.81021897810219E-006	0.001
+/gps/hist/point	1.82352941176471E-006	0.001
+/gps/hist/point	0.000001837	0.001
+/gps/hist/point	1.85074626865672E-006	0.001
+/gps/hist/point	1.86466165413534E-006	0.001
+/gps/hist/point	1.87878787878788E-006	0.001
+/gps/hist/point	1.89312977099237E-006	0.001
+/gps/hist/point	1.90769230769231E-006	0.001
+/gps/hist/point	1.92248062015504E-006	0.001
+/gps/hist/point	1.9375E-006	0.002
+/gps/hist/point	1.95275590551181E-006	0.003
+/gps/hist/point	1.96825396825397E-006	0.004
+/gps/hist/point	0.000001984	0.005
+/gps/hist/point	0.000002	0.006
+/gps/hist/point	2.01626016260163E-006	0.007
+/gps/hist/point	2.0327868852459E-006	0.008
+/gps/hist/point	2.0495867768595E-006	0.009
+/gps/hist/point	2.06666666666667E-006	0.01
+/gps/hist/point	0.000002084	0.02
+/gps/hist/point	2.10169491525424E-006	0.03
+/gps/hist/point	2.11965811965812E-006	0.05
+/gps/hist/point	2.13793103448276E-006	0.075
+/gps/hist/point	2.15652173913043E-006	0.09
+/gps/hist/point	2.17543859649123E-006	0.1
+/gps/hist/point	2.19469026548673E-006	0.125
+/gps/hist/point	2.21428571428571E-006	0.15
+/gps/hist/point	2.23423423423423E-006	0.17
+/gps/hist/point	2.25454545454545E-006	0.2
+/gps/hist/point	2.27522935779817E-006	0.235
+/gps/hist/point	2.2962962962963E-006	0.27
+/gps/hist/point	2.31775700934579E-006	0.32
+/gps/hist/point	2.33962264150943E-006	0.345
+/gps/hist/point	2.36190476190476E-006	0.38
+/gps/hist/point	2.38461538461538E-006	0.43
+/gps/hist/point	2.40776699029126E-006	0.47
+/gps/hist/point	2.43137254901961E-006	0.5
+/gps/hist/point	2.45544554455446E-006	0.56
+/gps/hist/point	0.00000248	0.6
+/gps/hist/point	2.50505050505051E-006	0.66
+/gps/hist/point	2.53061224489796E-006	0.7
+/gps/hist/point	2.55670103092784E-006	0.74
+/gps/hist/point	2.58333333333333E-006	0.8
+/gps/hist/point	2.61052631578947E-006	0.85
+/gps/hist/point	2.63829787234043E-006	0.895
+/gps/hist/point	2.66666666666667E-006	0.93
+/gps/hist/point	2.69565217391304E-006	0.95
+/gps/hist/point	2.72527472527473E-006	0.98
+/gps/hist/point	2.75555555555556E-006	1.012
+/gps/hist/point	2.78651685393258E-006	1.02
+/gps/hist/point	2.81818181818182E-006	1.02
+/gps/hist/point	2.85057471264368E-006	1.015
+/gps/hist/point	2.88372093023256E-006	0.99
+/gps/hist/point	2.91764705882353E-006	0.945
+/gps/hist/point	2.95238095238095E-006	0.885
+/gps/hist/point	0.000002988	0.82
+/gps/hist/point	3.02439024390244E-006	0.76
+/gps/hist/point	3.06172839506173E-006	0.71
+/gps/hist/point	0.0000031	0.64
+/gps/hist/point	3.13924050632911E-006	0.57
+/gps/hist/point	3.17948717948718E-006	0.48
+/gps/hist/point	3.22077922077922E-006	0.4
+/gps/hist/point	3.26315789473684E-006	0.33
+/gps/hist/point	3.30666666666667E-006	0.25
+/gps/hist/point	3.35135135135135E-006	0.19
+/gps/hist/point	3.3972602739726E-006	0.11
+/gps/hist/point	3.44444444444444E-006	0.06
+/gps/hist/point	0.000003493	0.02
+/gps/hist/point	3.54285714285714E-006	0.01
+/gps/hist/point	3.59420289855072E-006	0.005
+/gps/hist/point	3.64705882352941E-006	0.004
+/gps/hist/point	3.70149253731343E-006	0.003
+/gps/hist/point	3.75757575757576E-006	0.0025
+/gps/hist/point	3.81538461538462E-006	0.002
+/gps/hist/point	0.000003875	0.0015
+/gps/hist/point	3.93650793650794E-006	0.0014
+/gps/hist/point	0.000004	0.0013
+/gps/hist/point	4.0655737704918E-006	0.0012
+/gps/hist/point	4.13333333333333E-006	0.001
 
 
 #/tracking/verbose 1
