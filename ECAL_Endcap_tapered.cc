@@ -144,7 +144,7 @@ int main(int argc,char** argv)
   /// initialize attenuation function parameters
   
   
-  ifstream fp_Att_func("att_input_parameters.txt");
+  ifstream fp_Att_func("att_input_parameters_PWO_Nb.txt");
   for (int iAtt = 0; iAtt < nATT; iAtt++) fp_Att_func >> par0[iAtt] >> par1[iAtt] >> par2[iAtt];
   
   
