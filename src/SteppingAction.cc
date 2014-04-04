@@ -44,6 +44,8 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep)
   G4Track* theTrack = theStep->GetTrack();
   G4ParticleDefinition* particleType = theTrack->GetDefinition();
   
+//   cout << " step " << endl;
+  
   
   G4StepPoint* thePrePoint  = theStep->GetPreStepPoint();
   G4StepPoint* thePostPoint = theStep->GetPostStepPoint();
