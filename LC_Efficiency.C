@@ -23,21 +23,35 @@
   TFile * RunFile[nAtt];
   cout << "almeno fin qui ..." << endl;
 
-
-  RunFile[0] = new TFile("data/LC_sim_0mind.root","READ");   //
-  RunFile[1] = new TFile("data/LC_sim_1mind.root","READ");   //
-  RunFile[2] = new TFile("data/LC_sim_2mind.root","READ");   //
-  RunFile[3] = new TFile("data/LC_sim_3mind.root","READ");   //
-  RunFile[4] = new TFile("data/LC_sim_5mind.root","READ");   //
+/*
+  RunFile[0] = new TFile("data/LC_sim_0mind_tot.root","READ");   //
+  RunFile[1] = new TFile("data/LC_sim_1mind_tot.root","READ");   //
+  RunFile[2] = new TFile("data/LC_sim_2mind_tot.root","READ");   //
+  RunFile[3] = new TFile("data/LC_sim_3mind_tot.root","READ");   //
+  RunFile[4] = new TFile("data/LC_sim_5mind_tot.root","READ");   //
   
-  RunFile[5] = new TFile("data/LC_sim_7mind.root","READ");   //
-  RunFile[6] = new TFile("data/LC_sim_10mind.root","READ");   //
-  RunFile[7] = new TFile("data/LC_sim_12mind.root","READ");   //
-  RunFile[8] = new TFile("data/LC_sim_15mind.root","READ");   //
-  RunFile[9] = new TFile("data/LC_sim_20mind.root","READ");   //
-  RunFile[10] = new TFile("data/LC_sim_30mind.root","READ");   //
+  RunFile[5] = new TFile("data/LC_sim_7mind_tot.root","READ");   //
+  RunFile[6] = new TFile("data/LC_sim_10mind_tot.root","READ");   //
+  RunFile[7] = new TFile("data/LC_sim_12mind_tot.root","READ");   //
+  RunFile[8] = new TFile("data/LC_sim_15mind_tot.root","READ");   //
+  RunFile[9] = new TFile("data/LC_sim_20mind_tot.root","READ");   //
+  RunFile[10] = new TFile("data/LC_sim_30mind_tot.root","READ");   //
+ */
    
-  int NBINS = 220;
+  RunFile[0] = new TFile("data/LC_sim_0mind.root","READ");   //
+  RunFile[1] = new TFile("data/LC_sim_1mind0.root","READ");   //
+  RunFile[2] = new TFile("data/LC_sim_2mind0.root","READ");   //
+  RunFile[3] = new TFile("data/LC_sim_3mind0.root","READ");   //
+  RunFile[4] = new TFile("data/LC_sim_5mind0.root","READ");   //
+  
+  RunFile[5] = new TFile("data/LC_sim_7mind0.root","READ");   //
+  RunFile[6] = new TFile("data/LC_sim_10mind0.root","READ");   //
+  RunFile[7] = new TFile("data/LC_sim_12mind0.root","READ");   //
+  RunFile[8] = new TFile("data/LC_sim_15mind0.root","READ");   //
+  RunFile[9] = new TFile("data/LC_sim_20mind0.root","READ");   //
+  RunFile[10] = new TFile("data/LC_sim_30mind0.root","READ");   //
+  
+  int NBINS = 40;
   double maxZ = 220;
   double maxX = 14;
   
@@ -124,9 +138,7 @@
     TreeRun->SetBranchAddress("InitialPositionX",&InitialPositionX);
     TreeRun->SetBranchAddress("InitialPositionY",&InitialPositionY);
     TreeRun->SetBranchAddress("InitialPositionZ",&InitialPositionZ);
-    
-    TreeRun->SetBranchAddress("Tot_phot_cer",&Tot_phot_cer);
-    TreeRun->SetBranchAddress("Tot_phot_scint",&Tot_phot_scint);
+
     TreeRun->SetBranchAddress("Total_energy",&Total_energy);
     
 //     TreeRun->SetBranchAddress("opPhoton_n",&opPhoton_n);
@@ -143,7 +155,7 @@
       int NEVENTS = TreeRun->GetEntries();
       cout << "iAtt = " << iAtt << " :: nEvents = " << NEVENTS << endl;
       
-      for (Int_t iEvt= 0; iEvt < NEVENTS ; iEvt++) {//&& iEvt < 5&& iEvt < 1000000
+      for (Int_t iEvt= 0; iEvt < NEVENTS && iEvt < 10000000; iEvt++) {//&& iEvt < 5&& iEvt < 1000000
 
 	TreeRun->GetEntry(iEvt);
 // 	cout << " iEvt = " << iEvt << endl; //" :: photons = " << opPhoton_time_det.size() << endl; 	
@@ -169,25 +181,28 @@
 // 	    scint_phot++;
 // 	   }
  	  }
-	
-	
-	
-
       }	   //end of events loop
       
       for (int iBin = 0; iBin < NBINS; iBin ++){
 	hEfficiency[iAtt]->SetBinContent(iBin+1, hLongitudinalEff[iAtt]->GetBinContent(iBin+1)/hLongitudinalInEff[iAtt]->GetBinContent(iBin+1));
+	hEfficiency[iAtt]->SetBinError(iBin+1, sqrt(pow(hLongitudinalEff[iAtt]->GetBinError(iBin+1)/hLongitudinalEff[iAtt]->GetBinContent(iBin+1),2) + pow(hLongitudinalInEff[iAtt]->GetBinError(iBin+1)/hLongitudinalInEff[iAtt]->GetBinContent(iBin+1),2))
+						     * hLongitudinalEff[iAtt]->GetBinContent(iBin+1)/hLongitudinalInEff[iAtt]->GetBinContent(iBin+1));
+	
 	hEfficiencyX[iAtt]->SetBinContent(iBin+1, hTranverseXEff[iAtt]->GetBinContent(iBin+1)/hTranverseXInEff[iAtt]->GetBinContent(iBin+1));
       }
       
 //       hEfficiency[iAtt]->Scale (1./hEfficiency[iAtt]->GetMaximum());
 //       hEfficiencyX[iAtt]->Scale (1./hEfficiencyX[iAtt]->GetMaximum());
-
-    TF1 * fAtt = new TF1 ("fAtt", " [0]*exp((x-220)/[1]) + [2]", 0, 220);    
-    fAtt->SetParameters(0.1, 20, 0.01);
+    // sasha, more complicated parameterization
+//     TF1 * fAtt = new TF1 ("fAtt", " [0]*exp((x/1000-0.22)/[1]) * ( 1 + [2]*exp([3]/100*(4/pow(0.222 + [4],2) - 1/(0.22-x/1000)/(x/1000+[4])))) ", 0, 220);    
+//     fAtt->SetParameters(0.1, 20, 0.01, 1, 1);
+    
+    // simple parameterization: expo + const
+     TF1 * fAtt = new TF1 ("fAtt", " [0]*exp((x-220)/[1]) + [2]", 0, 220);    
+     fAtt->SetParameters(0.1, 20, 0.01);
 //     fAtt->FixParameter(1,220);
     fAtt->SetLineColor(iAtt+1);
-    for (int j=0; j< 10; j++) hEfficiency[iAtt]->Fit("fAtt", "QR");
+    for (int j=0; j<4; j++) hEfficiency[iAtt]->Fit("fAtt", "QR");
     gr_par0->SetPoint(iAtt, 1000/hInputAbsorption[iAtt]->GetBinContent(13), fAtt->GetParameter(0));
     gr_par1->SetPoint(iAtt, 1000/hInputAbsorption[iAtt]->GetBinContent(13), fAtt->GetParameter(1));
     gr_par2->SetPoint(iAtt, 1000/hInputAbsorption[iAtt]->GetBinContent(13), fAtt->GetParameter(2));
@@ -196,8 +211,8 @@
     
     TF1 * fFNUF = new TF1 ("fFNUF", " [0]*x + [1]", 35.2, 114.4);    	// fnuf: slope of linear fit between 13 X_0 e 4 X_0 con X_0 PWO = 8.8 mm
     fFNUF->SetParameters(1, 1);
-    hEfficiency[iAtt]->Fit("fFNUF", "QR");
-    gr_FNUF->SetPoint(iAtt, 1000/hInputAbsorption[iAtt]->GetBinContent(13), fFNUF->GetParameter(0)*100/0.0088);	// fnuf tra 13 X_0 e 4 X_0 con X_0 PWO = 8.8 mm
+//     hEfficiency[iAtt]->Fit("fFNUF", "SQR");
+//     gr_FNUF->SetPoint(iAtt, 1000/hInputAbsorption[iAtt]->GetBinContent(13), fFNUF->GetParameter(0)*100/0.0088);	// fnuf tra 13 X_0 e 4 X_0 con X_0 PWO = 8.8 mm
     
     
     
@@ -223,7 +238,8 @@
     
     }  //end of energy loop
     
-
+    hEfficiency[9]->SetLineColor(kOrange+1);
+    hEfficiencyX[9]->SetLineColor(kOrange+1);
   
     TCanvas * cInputAbsorption = new TCanvas ("cInputAbsorption", "cInputAbsorption", 600, 600);
     hInputAbsorption[0]->Draw();
@@ -254,10 +270,10 @@
     gPad->SetGrid();*/
     
     TCanvas * cLongitudinalEff = new TCanvas ("cLongitudinalEff", "cLongitudinalEff", 600, 600);
-    hEfficiency[0]->Draw();
+    hEfficiency[0]->Draw("E");
     hEfficiency[0]->GetYaxis()->SetRangeUser(1e-5,0.13);
     for (int iAtt = 1; iAtt < nAtt; iAtt++){
-      hEfficiency[iAtt]->Draw("same");
+      hEfficiency[iAtt]->Draw("sameE");
     }
     gPad->SetGrid();
     gPad->SetLogy();
