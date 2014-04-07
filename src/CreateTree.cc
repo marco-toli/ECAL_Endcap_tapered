@@ -52,7 +52,7 @@ CreateTree::CreateTree(TString name, bool energy_fiber, bool init_data, bool pos
   {
     this->GetTree()->Branch("Total_energy",&this->Total_energy,"Total_energy/F");
     this->GetTree()->Branch("Total_ion_energy",&this->Total_ion_energy,"Total_ion_energy/F");	  
-    this->GetTree()->Branch("Total_ion_energy_att",&this->Total_ion_energy_att,"Total_ion_energy_att[11]/F");	  
+    this->GetTree()->Branch("Total_ion_energy_att",&this->Total_ion_energy_att,"Total_ion_energy_att[11]/F");
   }
   
   if( this -> POS_FIBER)
@@ -133,7 +133,7 @@ void CreateTree::Clear()
     
         Total_energy= 0;
         Total_ion_energy = 0;	  		    	  
-	for (int j = 0; j< 10; j++) Total_ion_energy_att[j] = 0;
+	for (int j = 0; j< 11; j++) Total_ion_energy_att[j] = 0;
     
   }
   
