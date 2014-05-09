@@ -69,6 +69,7 @@ public:
   
   
   float Total_energy;
+  float Total_energy_dead_material;
   float Total_ion_energy;
   float Total_ion_energy_att[12];
   
