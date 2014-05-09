@@ -127,6 +127,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4Tubs* Det_solid = new G4Tubs("Det_solid", 0, win_r, det_d*0.5, startAngle, spanningAngle);
   
   G4Box* Front_al = new G4Box("Front_al", 0.5*front_face_size, 0.5*front_face_size, 0.5*win_l);
+  G4Box* Dead_material = new G4Box("Dead_material", 0.5*front_face_size, 0.5*front_face_size, 3*mm);		// dead material in front of crystal
   
   // logical
   G4LogicalVolume* EE_log = new G4LogicalVolume(EE_solid, ScMaterial, "EE_log", 0, 0, 0);
@@ -140,6 +141,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4LogicalVolume* Det_log = new G4LogicalVolume(Det_solid, DeMaterial, "Det_log", 0, 0, 0);
   
   G4LogicalVolume* Front_al_log = new G4LogicalVolume(Front_al, MyMaterials::Aluminum(), "Front_log", 0, 0, 0);
+  G4LogicalVolume* Dead_material_log = new G4LogicalVolume(Dead_material, MyMaterials::Aluminum(), "Dead_material_log", 0, 0, 0);
 
   
   // physical: placement
@@ -154,6 +156,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
       G4VPhysicalVolume* Det_rear_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, (crystal_length  + det_d)/2 + 2*win_l + depth) , Det_log, "Det_phys", expHall_log, false, 0);
       
       G4VPhysicalVolume* Front_al_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + win_l)/2) , Front_al_log, "Front_al_phys", expHall_log, false, 0);
+      G4VPhysicalVolume* Dead_material_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -0.15*m) , Dead_material_log, "Dead_material_phys", expHall_log, false, 0);
     
 
     //

@@ -129,6 +129,8 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep)
     float energy = theStep->GetTotalEnergyDeposit()/GeV;
     float time_dep =  theTrack->GetGlobalTime()/nanosecond ;
     float ion_energy = theStep->GetTotalEnergyDeposit()/GeV - theStep->GetNonIonizingEnergyDeposit()/GeV;
+
+    if( delta > 0  && thePrePVLogName == "Dead_material_log")    CreateTree::Instance()->Total_energy_dead_material += energy;
     
     if( delta > 0  && thePrePVLogName == "EE_log")
     {	   
