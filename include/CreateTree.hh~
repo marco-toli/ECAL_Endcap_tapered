@@ -24,7 +24,7 @@ public:
   
 public:
   
-  CreateTree(TString name, bool energy_fiber, bool init_data, bool pos_fiber, bool opPhotons, bool timing);
+  CreateTree(TString name, bool energy_fiber, bool init_data, bool pos_fiber, bool opPhotons, bool timing, bool double_ro);
   ~CreateTree();
   
   TTree*             GetTree() const { return ftree; };
@@ -40,6 +40,7 @@ public:
   bool Pos_fiber()    const { return this -> POS_FIBER;    };
   bool OpPhotons()    const { return this -> OPPHOTONS;    };
   bool Timing()       const { return this -> TIMING;       };
+  bool Double_ro()    const { return this -> DOUBLE;       };
   
   int Event;
   
@@ -69,6 +70,7 @@ public:
   
   
   float Total_energy;
+  float Total_energy_dead_material;
   float Total_ion_energy;
   float Total_ion_energy_att[12];
   
@@ -95,6 +97,8 @@ public:
   std::vector<float> opPhoton_n_type;
   std::vector<float> opPhoton_n_ext_type;
   std::vector<float> opPhoton_n_det_type;
+  std::vector<float> opPhoton_n_ext_end;
+  std::vector<float> opPhoton_n_det_end;
 
   int opPhoton_n_det_central;
   int opPhoton_n_det_3x3;

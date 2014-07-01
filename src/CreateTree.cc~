@@ -6,7 +6,7 @@ CreateTree* CreateTree::fInstance = NULL;
 
 
 
-CreateTree::CreateTree(TString name, bool energy_fiber, bool init_data, bool pos_fiber, bool opPhotons, bool timing)
+CreateTree::CreateTree(TString name, bool energy_fiber, bool init_data, bool pos_fiber, bool opPhotons, bool timing, bool double_ro)
 {
   if( fInstance )
   {
@@ -18,6 +18,7 @@ CreateTree::CreateTree(TString name, bool energy_fiber, bool init_data, bool pos
   this -> POS_FIBER    	= pos_fiber;
   this -> OPPHOTONS     = opPhotons;
   this -> TIMING        = timing;
+  
   
   this -> fInstance = this;
   this -> fname     = name;
@@ -72,9 +73,11 @@ CreateTree::CreateTree(TString name, bool energy_fiber, bool init_data, bool pos
     
     this->GetTree()->Branch("opPhoton_n_ext",&this->opPhoton_n_ext,"opPhoton_n_ext/I");
     this->GetTree()->Branch("opPhoton_n_ext_type",&this->opPhoton_n_ext_type);
+    this->GetTree()->Branch("opPhoton_n_ext_end",&this->opPhoton_n_ext_end);
     
     this->GetTree()->Branch("opPhoton_n_det",&this->opPhoton_n_det,"opPhoton_n_det/I");
     this->GetTree()->Branch("opPhoton_n_det_type",&this->opPhoton_n_det_type);
+    this->GetTree()->Branch("opPhoton_n_det_end",&this->opPhoton_n_det_end);
        
     this->GetTree()->Branch("opPhoton_waveLength_det",&opPhoton_waveLength_det);
     this->GetTree()->Branch("opPhoton_time_det",&opPhoton_time_det);
@@ -156,9 +159,11 @@ void CreateTree::Clear()
       
     opPhoton_n_ext = 0;
     opPhoton_n_ext_type.clear();
+    opPhoton_n_ext_end.clear();
       
     opPhoton_n_det = 0;
-    opPhoton_n_det_type.clear();    
+    opPhoton_n_det_type.clear();
+    opPhoton_n_det_end.clear();
 
     opPhoton_waveLength_det.clear();
     opPhoton_time_det.clear();
