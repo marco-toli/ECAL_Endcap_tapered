@@ -93,8 +93,8 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep)
       }
       
       // extracted photons
-      if ((thePrePVName == "EE_rear_phys" && thePostPVName == "Grease_rear_phys")	||
-	  (thePrePVName == "EE_front_phys" && thePostPVName == "Grease_front_phys")      ) {
+      if ((thePrePVName == "EE_phys" && thePostPVName == "Grease_rear_phys")	||
+	  (thePrePVName == "EE_phys" && thePostPVName == "Grease_front_phys")      ) {
 	
 	CreateTree::Instance()->opPhoton_n_ext ++;
 	//tag for photon type
@@ -102,8 +102,8 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep)
 	if (processName == "Scintillation") CreateTree::Instance()->opPhoton_n_ext_type.push_back(1);
 	
 	//tag for detector type: front or rear
-	if (thePrePVName == "EE_rear_phys") CreateTree::Instance()->opPhoton_n_ext_end.push_back(0);
-	if (thePrePVName == "EE_front_phys") CreateTree::Instance()->opPhoton_n_ext_end.push_back(1);
+	if (thePostPVName == "Grease_rear_phys") CreateTree::Instance()->opPhoton_n_ext_end.push_back(0);
+	if (thePostPVName == "Grease_front_phys") CreateTree::Instance()->opPhoton_n_ext_end.push_back(1);
       }
 
       
