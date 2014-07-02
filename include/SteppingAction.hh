@@ -18,7 +18,7 @@
 
 
   const int nATT = 11;
-  double par0[nATT], par1[nATT], par2[nATT];
+  double par0[nATT], par1[nATT], par2[nATT], par3[nATT], par4[nATT];
 
   //class SteppingMessenger;
   
@@ -33,9 +33,10 @@ public:
 
   
 
-  double fAtt (double par0, double par1, double par2, double z) {
+  double fAtt (double par0, double par1, double par2, double par3, double par4, double z)
+  {
     
-    double att = par0*exp((z-220)/par1) + par2;
+    double att = par0*exp((z-220)/par1) + par2 + par3*exp((-z)/par4);
     return att;
     
   }

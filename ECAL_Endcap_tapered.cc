@@ -144,9 +144,6 @@ int main(int argc,char** argv)
   /// initialize attenuation function parameters
   
   
-  ifstream fp_Att_func("att_input_parameters_PWO_Nb.txt");
-  for (int iAtt = 0; iAtt < nATT; iAtt++) fp_Att_func >> par0[iAtt] >> par1[iAtt] >> par2[iAtt];
-  
   
   // Seed the random number generator manually
   //
@@ -162,12 +159,31 @@ int main(int argc,char** argv)
   
   G4bool energy_data = 1;
   G4bool init_data   = 1;
-  G4bool pos_fiber   = 0;
-  G4bool opPhotons   = 0;
-  G4bool timing      = 0;
+  G4bool pos_fiber   = 1;
+  G4bool opPhotons   = 1;
+  G4bool timing      = 1;
   G4bool double_ro   = 1;
   
   CreateTree* mytree = new CreateTree("tree", energy_data, init_data, pos_fiber, opPhotons, timing, double_ro);
+
+
+  if (double_ro == 0)
+  {
+    ifstream fp_Att_func("att_input_parameters_PWO_Nb.txt");
+    for (int iAtt = 0; iAtt < nATT; iAtt++)
+    {
+      fp_Att_func >> par0[iAtt] >> par1[iAtt] >> par2[iAtt];
+      par3[iAtt] = 0;
+      par4[iAtt] = 0;
+    }
+  }
+
+  else if (double_ro == 1)
+  {
+    ifstream fp_Att_func("att_input_parameters_double.txt");
+    for (int iAtt = 0; iAtt < nATT; iAtt++) fp_Att_func >> par0[iAtt] >> par1[iAtt] >> par2[iAtt] >> par3[iAtt] >> par4[iAtt];
+  }
+  
   
   
   // User Verbose output class
