@@ -158,7 +158,9 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep)
      
 //      cout << " att coeff = " <<  fAtt(par0, par1, par2, pos[2])/par0 << endl;
      for (int iAtt = 0; iAtt < nATT; iAtt++) {
-	 CreateTree::Instance()->Total_ion_energy_att[iAtt]    += ion_energy* fAtt(par0[iAtt], par1[iAtt], par2[iAtt], par3[iAtt], par4[iAtt], pos[2] + 110);// if normalization / fAtt(par0[iAtt], par1[iAtt], par2[iAtt], 220);
+	 CreateTree::Instance()->Total_ion_energy_att[iAtt]    	+= ion_energy* fAtt(par0[iAtt], par1[iAtt], par2[iAtt], par3[iAtt], par4[iAtt], pos[2] + 110);	// if normalization / fAtt(par0[iAtt], par1[iAtt], par2[iAtt], 220);
+	 CreateTree::Instance()->Total_ion_energy_att_rear[iAtt]    	+= ion_energy* fAttRear(par0_r[iAtt], par1_r[iAtt], par2_r[iAtt], pos[2] + 110);			// if normalization / fAtt(par0[iAtt], par1[iAtt], par2[iAtt], 220);
+	 CreateTree::Instance()->Total_ion_energy_att_front[iAtt]    	+= ion_energy* fAttFront(par0_f[iAtt], par1_f[iAtt], par2_f[iAtt], pos[2] + 110);			// if normalization / fAtt(par0[iAtt], par1[iAtt], par2[iAtt], 220);
      }
      
 

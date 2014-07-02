@@ -175,6 +175,15 @@ int main(int argc,char** argv)
       fp_Att_func >> par0[iAtt] >> par1[iAtt] >> par2[iAtt];
       par3[iAtt] = 0;
       par4[iAtt] = 0;
+      
+      par0_f[iAtt] = 0;
+      par1_f[iAtt] = 0;
+      par2_f[iAtt] = 0;
+
+      par0_r[iAtt] = 0;
+      par1_r[iAtt] = 0;
+      par2_r[iAtt] = 0;
+      
     }
   }
 
@@ -182,6 +191,12 @@ int main(int argc,char** argv)
   {
     ifstream fp_Att_func("att_input_parameters_double.txt");
     for (int iAtt = 0; iAtt < nATT; iAtt++) fp_Att_func >> par0[iAtt] >> par1[iAtt] >> par2[iAtt] >> par3[iAtt] >> par4[iAtt];
+
+    ifstream fp_Att_func_f("att_input_parameters_DOUBLE_f.txt");
+    for (int iAtt = 0; iAtt < nATT; iAtt++) fp_Att_func_f >> par0_f[iAtt] >> par1_f[iAtt] >> par2_f[iAtt];
+    
+    ifstream fp_Att_func_r("att_input_parameters_DOUBLE_r.txt");
+    for (int iAtt = 0; iAtt < nATT; iAtt++) fp_Att_func_r >> par0_r[iAtt] >> par1_r[iAtt] >> par2_r[iAtt];
   }
   
   

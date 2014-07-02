@@ -74,6 +74,8 @@ public:
   float Total_energy_dead_material;
   float Total_ion_energy;
   float Total_ion_energy_att[12];
+  float Total_ion_energy_att_rear[12];
+  float Total_ion_energy_att_front[12];
   
   
   std::vector<int> opPhoton_process;
