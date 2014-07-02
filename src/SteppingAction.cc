@@ -110,7 +110,7 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep)
       //----------------------------------------------
       // detected photons
       if ((thePrePVName == "Det_layer_rear_phys" && thePostPVName == "Det_rear_phys") ||
-	  (thePrePVName == "Det_layer_fronts_phys" && thePostPVName == "Det_front_phys")      ) {	// detected at photodetector iCrystal
+	  (thePrePVName == "Det_layer_front_phys" && thePostPVName == "Det_front_phys")      ) {	// detected at photodetector iCrystal
 
 	CreateTree::Instance()->opPhoton_n_det++;
 	//tag for photon type
