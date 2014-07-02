@@ -117,7 +117,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   // solids
   G4Trd* EE_solid = new G4Trd("EE_solid",0.5*front_face_size, 0.5*rear_face_size, 0.5*front_face_size , 0.5*rear_face_size, 0.5*crystal_length);
 
-  G4Trd* EE_solid_big = new G4Trd("EE_solid_big",0.5*(front_face_size + alveola_thickness/2), 0.5*(rear_face_size + alveola_thickness/2), 0.5*(front_face_size + alveola_thickness/2) , 0.5*(rear_face_size+ alveola_thickness/2), 0.5*(crystal_length - 0.1*mm));
+  G4Trd* EE_solid_big = new G4Trd("EE_solid_big",0.5*(front_face_size + alveola_thickness/2), 0.5*(rear_face_size + alveola_thickness/2), 0.5*(front_face_size + alveola_thickness/2) , 0.5*(rear_face_size+ alveola_thickness/2), 0.5*(crystal_length - 0.5*mm));
   G4SubtractionSolid* EE_solid_alveolar = new G4SubtractionSolid ("EE_solid_alveolar", EE_solid_big, EE_solid);
   
   G4Tubs* Grease_solid = new G4Tubs("Grease_solid", 0, win_r, 0.5*win_l, startAngle, spanningAngle);
