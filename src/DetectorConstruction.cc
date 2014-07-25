@@ -155,15 +155,15 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
       G4VPhysicalVolume* Det_layer_rear_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, (crystal_length + depth)/2 + 2*win_l) , Det_layer_log, "Det_layer_rear_phys", expHall_log, false, 0);
       G4VPhysicalVolume* Det_rear_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, (crystal_length  + det_d)/2 + 2*win_l + depth) , Det_log, "Det_rear_phys", expHall_log, false, 0);
       
-//       G4VPhysicalVolume* Front_al_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + win_l)/2) , Front_al_log, "Front_al_phys", expHall_log, false, 0);
-      G4VPhysicalVolume* Dead_material_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -0.15*m) , Dead_material_log, "Dead_material_phys", expHall_log, false, 0);
+      G4VPhysicalVolume* Front_al_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + win_l)/2) , Front_al_log, "Front_al_phys", expHall_log, false, 0);
+//      G4VPhysicalVolume* Dead_material_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -0.15*m) , Dead_material_log, "Dead_material_phys", expHall_log, false, 0);
 
    // double readout: place photodetector also in front
-      G4VPhysicalVolume* Grease_front_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + win_l)/2) , Grease_log, "Grease_front_phys", expHall_log, false, 0);
-      G4VPhysicalVolume* Win_front_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + win_l)/2 - win_l), Win_log, "Win_front_phys", expHall_log, false, 0);
+//      G4VPhysicalVolume* Grease_front_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + win_l)/2) , Grease_log, "Grease_front_phys", expHall_log, false, 0);
+//      G4VPhysicalVolume* Win_front_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + win_l)/2 - win_l), Win_log, "Win_front_phys", expHall_log, false, 0);
 
-      G4VPhysicalVolume* Det_layer_front_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + depth)/2 - 2*win_l) , Det_layer_log, "Det_layer_front_phys", expHall_log, false, 0);
-      G4VPhysicalVolume* Det_front_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length  + det_d)/2 - 2*win_l - depth) , Det_log, "Det_front_phys", expHall_log, false, 0);
+//      G4VPhysicalVolume* Det_layer_front_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + depth)/2 - 2*win_l) , Det_layer_log, "Det_layer_front_phys", expHall_log, false, 0);
+//      G4VPhysicalVolume* Det_front_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length  + det_d)/2 - 2*win_l - depth) , Det_log, "Det_front_phys", expHall_log, false, 0);
 
     //
     // S U R F A C E S   C O N F I G U R A T I O N
@@ -187,7 +187,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
         //----INTERNAL WRAPPING----//
 	    	    
 	    CrystalSurfaceSkin   = new G4LogicalBorderSurface("Lateral", EE_phys, EE_alveolar_phys, OpCrystalSurface);
-//      	    CrystalFrontSkin   = new G4LogicalBorderSurface("Front", EE_phys, Front_al_phys, OpCrystalSurface);
+   	    CrystalFrontSkin   = new G4LogicalBorderSurface("Front", EE_phys, Front_al_phys, OpCrystalSurface);
 
     }
     
