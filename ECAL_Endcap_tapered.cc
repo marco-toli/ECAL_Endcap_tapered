@@ -159,22 +159,22 @@ int main(int argc,char** argv)
   
   G4bool energy_data = 1;
   G4bool init_data   = 1;
-  G4bool pos_fiber   = 1;
-  G4bool opPhotons   = 1;
-  G4bool timing      = 1;
-  G4bool double_ro   = 1;
+  G4bool pos_fiber   = 0;
+  G4bool opPhotons   = 0;
+  G4bool timing      = 0;
+  G4bool double_ro   = 0;
   
   CreateTree* mytree = new CreateTree("tree", energy_data, init_data, pos_fiber, opPhotons, timing, double_ro);
 
 
   if (double_ro == 0)
   {
-    ifstream fp_Att_func("att_input_parameters_PWO_Nb.txt");
+    ifstream fp_Att_func("att_input_parameters_latest.txt");
     for (int iAtt = 0; iAtt < nATT; iAtt++)
     {
       fp_Att_func >> par0[iAtt] >> par1[iAtt] >> par2[iAtt];
-      par3[iAtt] = 0;
-      par4[iAtt] = 0;
+      par3[iAtt] = 0;	//set null the second exponential
+      par4[iAtt] = 1;
       
       par0_f[iAtt] = 0;
       par1_f[iAtt] = 0;
@@ -189,7 +189,7 @@ int main(int argc,char** argv)
 
   else if (double_ro == 1)
   {
-    ifstream fp_Att_func("att_input_parameters_double.txt");
+    ifstream fp_Att_func("att_input_parameters_DOUBLE.txt");
     for (int iAtt = 0; iAtt < nATT; iAtt++) fp_Att_func >> par0[iAtt] >> par1[iAtt] >> par2[iAtt] >> par3[iAtt] >> par4[iAtt];
 
     ifstream fp_Att_func_f("att_input_parameters_DOUBLE_f.txt");
