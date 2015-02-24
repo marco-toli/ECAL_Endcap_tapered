@@ -129,6 +129,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4Box* Front_al = new G4Box("Front_al", 0.5*front_face_size, 0.5*front_face_size, 0.5*win_l);
   G4Box* Dead_material = new G4Box("Dead_material", 0.5*front_face_size, 0.5*front_face_size, 3*mm);		// dead material in front of crystal
   
+  //plastic scintillator tagging
+  G4Box* Plastic_tag = new G4Box("Plastic_tag", 18*mm, 18*mm, 1*mm);
+  
   // logical
   G4LogicalVolume* EE_log = new G4LogicalVolume(EE_solid, ScMaterial, "EE_log", 0, 0, 0);
   G4LogicalVolume* EE_log_alveolar = new G4LogicalVolume(EE_solid_alveolar, MyMaterials::Aluminum(), "EE_log_alveolar", 0, 0, 0);
@@ -142,6 +145,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   
   G4LogicalVolume* Front_al_log = new G4LogicalVolume(Front_al, MyMaterials::Aluminum(), "Front_log", 0, 0, 0);
   G4LogicalVolume* Dead_material_log = new G4LogicalVolume(Dead_material, MyMaterials::Aluminum(), "Dead_material_log", 0, 0, 0);
+  
+  G4LogicalVolume* Plastic_tag_log = new G4LogicalVolume(Plastic_tag, MyMaterials::Air(), "Plastic_tag_log", 0, 0, 0);
 
   
   // physical: placement
