@@ -72,6 +72,7 @@ public:
   
   float Total_energy;
   float Total_energy_dead_material;
+  int Plastic_tag_ID;
   float Total_ion_energy;
   float Total_ion_energy_att[12];
   float Total_ion_energy_att_rear[12];
