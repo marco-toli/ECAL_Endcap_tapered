@@ -130,7 +130,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4Box* Dead_material = new G4Box("Dead_material", 0.5*front_face_size, 0.5*front_face_size, 3*mm);		// dead material in front of crystal
   
   //plastic scintillator tagging
-  G4Box* Plastic_tag = new G4Box("Plastic_tag", 18*mm, 18*mm, 1*mm);
+  G4Box* Plastic_tag = new G4Box("Plastic_tag", 10*mm, 1*mm, 10*mm);
   
   // logical
   G4LogicalVolume* EE_log = new G4LogicalVolume(EE_solid, ScMaterial, "EE_log", 0, 0, 0);
@@ -149,8 +149,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4LogicalVolume* Plastic_tag_log = new G4LogicalVolume(Plastic_tag, MyMaterials::Air(), "Plastic_tag_log", 0, 0, 0);
 
   
-  // physical: placement
-       
+      // physical: placement
       G4VPhysicalVolume* EE_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, 0), EE_log, "EE_phys", expHall_log, false, 0);
       G4VPhysicalVolume* EE_alveolar_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, 0), EE_log_alveolar, "EE_alveolar_phys", expHall_log, false, 0);
 
@@ -160,16 +159,23 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
       G4VPhysicalVolume* Det_layer_rear_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, (crystal_length + depth)/2 + 2*win_l) , Det_layer_log, "Det_layer_rear_phys", expHall_log, false, 0);
       G4VPhysicalVolume* Det_rear_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, (crystal_length  + det_d)/2 + 2*win_l + depth) , Det_log, "Det_rear_phys", expHall_log, false, 0);
       
-      G4VPhysicalVolume* Front_al_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + win_l)/2) , Front_al_log, "Front_al_phys", expHall_log, false, 0);
+      //reflective layer on front face and dead material in front of crystal
+//       G4VPhysicalVolume* Front_al_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + win_l)/2) , Front_al_log, "Front_al_phys", expHall_log, false, 0);
 //      G4VPhysicalVolume* Dead_material_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -0.15*m) , Dead_material_log, "Dead_material_phys", expHall_log, false, 0);
 
-   // double readout: place photodetector also in front
-//      G4VPhysicalVolume* Grease_front_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + win_l)/2) , Grease_log, "Grease_front_phys", expHall_log, false, 0);
-//      G4VPhysicalVolume* Win_front_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + win_l)/2 - win_l), Win_log, "Win_front_phys", expHall_log, false, 0);
+      // double readout: place photodetector also in front
+      G4VPhysicalVolume* Grease_front_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + win_l)/2) , Grease_log, "Grease_front_phys", expHall_log, false, 0);
+      G4VPhysicalVolume* Win_front_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + win_l)/2 - win_l), Win_log, "Win_front_phys", expHall_log, false, 0);
 
-//      G4VPhysicalVolume* Det_layer_front_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + depth)/2 - 2*win_l) , Det_layer_log, "Det_layer_front_phys", expHall_log, false, 0);
-//      G4VPhysicalVolume* Det_front_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length  + det_d)/2 - 2*win_l - depth) , Det_log, "Det_front_phys", expHall_log, false, 0);
+      G4VPhysicalVolume* Det_layer_front_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length + depth)/2 - 2*win_l) , Det_layer_log, "Det_layer_front_phys", expHall_log, false, 0);
+      G4VPhysicalVolume* Det_front_phys = new G4PVPlacement(0, G4ThreeVector(0, 0, -(crystal_length  + det_d)/2 - 2*win_l - depth) , Det_log, "Det_front_phys", expHall_log, false, 0);
 
+      // adding 4 plastic detectors on top of the crystal to tag muons
+      double distance = 45*mm;
+      G4VPhysicalVolume* Plastic_tag_phys1 = new G4PVPlacement(0, G4ThreeVector(0, distance, -90*mm) , Plastic_tag_log, "Plastic_tag_phys1", expHall_log, false, 0);
+      G4VPhysicalVolume* Plastic_tag_phys2 = new G4PVPlacement(0, G4ThreeVector(0, distance, -30*mm) , Plastic_tag_log, "Plastic_tag_phys2", expHall_log, false, 0);
+      G4VPhysicalVolume* Plastic_tag_phys3 = new G4PVPlacement(0, G4ThreeVector(0, distance,  30*mm) , Plastic_tag_log, "Plastic_tag_phys3", expHall_log, false, 0);
+      G4VPhysicalVolume* Plastic_tag_phys4 = new G4PVPlacement(0, G4ThreeVector(0, distance,  90*mm) , Plastic_tag_log, "Plastic_tag_phys4", expHall_log, false, 0);
     //
     // S U R F A C E S   C O N F I G U R A T I O N
     //
@@ -192,12 +198,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
         //----INTERNAL WRAPPING----//
 	    	    
 	    CrystalSurfaceSkin   = new G4LogicalBorderSurface("Lateral", EE_phys, EE_alveolar_phys, OpCrystalSurface);
-   	    CrystalFrontSkin   = new G4LogicalBorderSurface("Front", EE_phys, Front_al_phys, OpCrystalSurface);
-
+//    	    CrystalFrontSkin   = new G4LogicalBorderSurface("Front", EE_phys, Front_al_phys, OpCrystalSurface);
     }
-    
-  
-  
+      
   //-----------------------------------------------------
   //------------- Visualization attributes --------------
   //-----------------------------------------------------
