@@ -94,7 +94,7 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep)
       
       // extracted photons
       if ((thePrePVName == "EE_phys" && thePostPVName == "Grease_rear_phys")	||
-	  (thePrePVName == "EE_phys" && thePostPVName == "Grease_front_phys")      ) {
+	  (thePrePVName == "EE_phys" && thePostPVName == "Grease_front_phys")     ) {
 	
 	CreateTree::Instance()->opPhoton_n_ext ++;
 	//tag for photon type
@@ -138,6 +138,12 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep)
     G4LogicalVolume* thePrePVLog = thePreVolume -> GetLogicalVolume();
     G4String thePrePVLogName = thePrePVLog -> GetName();
     
+    /*
+    G4TouchableHandle thePostTouch = thePostPoint -> GetTouchableHandle();
+    G4VPhysicalVolume* thePostVolume = thePostTouch -> GetVolume();
+    G4LogicalVolume* thePostPVLog = thePostVolume -> GetLogicalVolume();
+    G4String thePosPVLogName;  if (thePostPVLog) thePosPVLogName = thePostPVLog -> GetName();*/
+    
     
     float delta = thePrePoint->GetTotalEnergy()/GeV - thePostPoint->GetTotalEnergy()/GeV;
     float energy = theStep->GetTotalEnergyDeposit()/GeV;
@@ -145,6 +151,15 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep)
     float ion_energy = theStep->GetTotalEnergyDeposit()/GeV - theStep->GetNonIonizingEnergyDeposit()/GeV;
 
     if( delta > 0  && thePrePVLogName == "Dead_material_log")    CreateTree::Instance()->Total_energy_dead_material += energy;
+   
+    // tag using "plastic" scintillator
+    if( thePrePVLogName == "Plastic_tag_log")   
+    {
+      if (thePrePVName == "Plastic_tag_phys1")       CreateTree::Instance()->Plastic_tag_ID = 1;
+      if (thePrePVName == "Plastic_tag_phys2")       CreateTree::Instance()->Plastic_tag_ID = 2;
+      if (thePrePVName == "Plastic_tag_phys3")       CreateTree::Instance()->Plastic_tag_ID = 3;
+      if (thePrePVName == "Plastic_tag_phys4")       CreateTree::Instance()->Plastic_tag_ID = 4;
+    }
     
     if( delta > 0  && thePrePVLogName == "EE_log")
     {	   
