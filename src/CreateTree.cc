@@ -52,6 +52,7 @@ CreateTree::CreateTree(TString name, bool energy_fiber, bool init_data, bool pos
   if( this -> ENERGY_FIBER)
   {
     this->GetTree()->Branch("Total_energy_dead_material",&this->Total_energy_dead_material,"Total_energy_dead_material/F");
+    this->GetTree()->Branch("Plastic_tag_ID",&this->Plastic_tag_ID,"Plastic_tag_ID/I");
     this->GetTree()->Branch("Total_energy",&this->Total_energy,"Total_energy/F");
     this->GetTree()->Branch("Total_ion_energy",&this->Total_ion_energy,"Total_ion_energy/F");	  
     this->GetTree()->Branch("Total_ion_energy_att",&this->Total_ion_energy_att,"Total_ion_energy_att[11]/F");
@@ -138,6 +139,7 @@ void CreateTree::Clear()
   {
 
 	Total_energy_dead_material = 0;
+	Plastic_tag_ID = -1;
         Total_energy = 0;
         Total_ion_energy = 0;	  		    	  
 	for (int j = 0; j< 11; j++)
