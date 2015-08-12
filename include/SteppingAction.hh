@@ -17,7 +17,7 @@
 
 
 
-  const int nATT = 11;
+  const int nATT = 13;
   double par0[nATT], par1[nATT], par2[nATT], par3[nATT], par4[nATT];
   double par0_r[nATT], par1_r[nATT], par2_r[nATT];
   double par0_f[nATT], par1_f[nATT], par2_f[nATT];
