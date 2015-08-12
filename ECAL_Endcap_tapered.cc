@@ -157,11 +157,11 @@ int main(int argc,char** argv)
   CLHEP::HepRandom::setTheSeed(myseed);
   
   
-  G4bool energy_data = 0;
+  G4bool energy_data = 1;
   G4bool init_data   = 1;
   G4bool pos_fiber   = 0;
-  G4bool opPhotons   = 1;
-  G4bool timing      = 1;
+  G4bool opPhotons   = 0;
+  G4bool timing      = 0;
   G4bool double_ro   = 1;
   
   CreateTree* mytree = new CreateTree("tree", energy_data, init_data, pos_fiber, opPhotons, timing, double_ro);
