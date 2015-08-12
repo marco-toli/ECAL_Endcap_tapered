@@ -38,15 +38,15 @@ CreateTree::CreateTree(TString name, bool energy_fiber, bool init_data, bool pos
   
   if( this -> INIT_DATA )
   {
-    this->GetTree()->Branch("InitialEnergy",&this->InitialEnergy,"InitialEnergy/F");
+ //   this->GetTree()->Branch("InitialEnergy",&this->InitialEnergy,"InitialEnergy/F");
     
     this->GetTree()->Branch("InitialPositionX",&this->InitialPositionX,"InitialPositionX/F");
     this->GetTree()->Branch("InitialPositionY",&this->InitialPositionY,"InitialPositionY/F");
     this->GetTree()->Branch("InitialPositionZ",&this->InitialPositionZ,"InitialPositionZ/F");
     
-    this->GetTree()->Branch("InitalMomentumDirectionX",&this->InitalMomentumDirectionX,"InitalMomentumDirectionX/F");
-    this->GetTree()->Branch("InitalMomentumDirectionY",&this->InitalMomentumDirectionY,"InitalMomentumDirectionY/F");
-    this->GetTree()->Branch("InitalMomentumDirectionZ",&this->InitalMomentumDirectionZ,"InitalMomentumDirectionZ/F");
+//    this->GetTree()->Branch("InitalMomentumDirectionX",&this->InitalMomentumDirectionX,"InitalMomentumDirectionX/F");
+//    this->GetTree()->Branch("InitalMomentumDirectionY",&this->InitalMomentumDirectionY,"InitalMomentumDirectionY/F");
+//    this->GetTree()->Branch("InitalMomentumDirectionZ",&this->InitalMomentumDirectionZ,"InitalMomentumDirectionZ/F");
   }
     
   if( this -> ENERGY_FIBER)
@@ -72,19 +72,19 @@ CreateTree::CreateTree(TString name, bool energy_fiber, bool init_data, bool pos
   if( this -> OPPHOTONS)
   {
     this->GetTree()->Branch("opPhoton_n",&this->opPhoton_n,"opPhoton_n/I");
-    this->GetTree()->Branch("opPhoton_n_type",&this->opPhoton_n_type);
+//    this->GetTree()->Branch("opPhoton_n_type",&this->opPhoton_n_type);
     
-    this->GetTree()->Branch("opPhoton_n_ext",&this->opPhoton_n_ext,"opPhoton_n_ext/I");
-    this->GetTree()->Branch("opPhoton_n_ext_type",&this->opPhoton_n_ext_type);
-    this->GetTree()->Branch("opPhoton_n_ext_end",&this->opPhoton_n_ext_end);
+//    this->GetTree()->Branch("opPhoton_n_ext",&this->opPhoton_n_ext,"opPhoton_n_ext/I");
+//    this->GetTree()->Branch("opPhoton_n_ext_type",&this->opPhoton_n_ext_type);
+//    this->GetTree()->Branch("opPhoton_n_ext_end",&this->opPhoton_n_ext_end);
     
     this->GetTree()->Branch("opPhoton_n_det",&this->opPhoton_n_det,"opPhoton_n_det/I");
-    this->GetTree()->Branch("opPhoton_n_det_type",&this->opPhoton_n_det_type);
+//    this->GetTree()->Branch("opPhoton_n_det_type",&this->opPhoton_n_det_type);
     this->GetTree()->Branch("opPhoton_n_det_end",&this->opPhoton_n_det_end);
        
-    this->GetTree()->Branch("opPhoton_waveLength_det",&opPhoton_waveLength_det);
-    this->GetTree()->Branch("opPhoton_time_det",&opPhoton_time_det);
-    this->GetTree()->Branch("opPhoton_trackLength_det",&opPhoton_trackLength_det);
+//    this->GetTree()->Branch("opPhoton_waveLength_det",&opPhoton_waveLength_det);
+//    this->GetTree()->Branch("opPhoton_time_det",&opPhoton_time_det);
+//    this->GetTree()->Branch("opPhoton_trackLength_det",&opPhoton_trackLength_det);
   }
   
   this->Clear();

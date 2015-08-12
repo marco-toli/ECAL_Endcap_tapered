@@ -134,8 +134,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   
   // logical
   G4LogicalVolume* EE_log = new G4LogicalVolume(EE_solid, ScMaterial, "EE_log", 0, 0, 0);
-  G4LogicalVolume* EE_log_alveolar = new G4LogicalVolume(EE_solid_alveolar, MyMaterials::Aluminum(), "EE_log_alveolar", 0, 0, 0);
-//   G4LogicalVolume* EE_log_alveolar = new G4LogicalVolume(EE_solid_alveolar, MyMaterials::Air(), "EE_log_alveolar", 0, 0, 0);
+//  G4LogicalVolume* EE_log_alveolar = new G4LogicalVolume(EE_solid_alveolar, MyMaterials::Aluminum(), "EE_log_alveolar", 0, 0, 0);
+   G4LogicalVolume* EE_log_alveolar = new G4LogicalVolume(EE_solid_alveolar, MyMaterials::Air(), "EE_log_alveolar", 0, 0, 0);
   
   G4LogicalVolume* Grease_log = new G4LogicalVolume(Grease_solid, MyMaterials::OpticalGrease(), "Grease_log", 0, 0, 0);
   G4LogicalVolume* Win_log = new G4LogicalVolume(Win_solid, WiMaterial, "Win_log", 0, 0, 0);

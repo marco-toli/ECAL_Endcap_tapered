@@ -91,7 +91,7 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep)
 	if (processName == "Scintillation") CreateTree::Instance()->opPhoton_n_type.push_back(1);
 	CreateTree::Instance()->opPhoton_time.push_back(theTrack->GetGlobalTime()/nanosecond);
       }
-      
+      /*
       // extracted photons
       if ((thePrePVName == "EE_phys" && thePostPVName == "Grease_rear_phys")	||
 	  (thePrePVName == "EE_phys" && thePostPVName == "Grease_front_phys")     ) {
@@ -104,11 +104,12 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep)
 	//tag for detector type: front or rear
 	if (thePostPVName == "Grease_rear_phys") CreateTree::Instance()->opPhoton_n_ext_end.push_back(0);
 	if (thePostPVName == "Grease_front_phys") CreateTree::Instance()->opPhoton_n_ext_end.push_back(1);
-      }
+      }*/
 
       
       //----------------------------------------------
       // detected photons
+/*
       if ((thePrePVName == "Det_layer_rear_phys" && thePostPVName == "Det_rear_phys") ||
 	  (thePrePVName == "Det_layer_front_phys" && thePostPVName == "Det_front_phys")      ) {	// detected at photodetector iCrystal
 
@@ -125,6 +126,25 @@ void SteppingAction::UserSteppingAction(const G4Step * theStep)
 	CreateTree::Instance()->opPhoton_trackLength_det.push_back( theTrack->GetTrackLength()/m );
 	
       }//definition of detected photon
+*/
+	//new looser definition of detected photons
+      if ((thePrePVName == "Grease_rear_phys" && thePostPVName != "EE_phys") ||
+          (thePrePVName == "Grease_front_phys" && thePostPVName != "EE_phys")      ) {        // detected at photodetector iCrystal
+
+        CreateTree::Instance()->opPhoton_n_det++;
+        //tag for photon type
+//        if (processName == "Cherenkov") CreateTree::Instance()->opPhoton_n_det_type.push_back(0);
+//        if (processName == "Scintillation") CreateTree::Instance()->opPhoton_n_det_type.push_back(1);
+        //tag for detector type: front or rear
+        if (thePrePVName == "Grease_rear_phys") CreateTree::Instance()->opPhoton_n_det_end.push_back(0);
+        if (thePrePVName == "Grease_front_phys") CreateTree::Instance()->opPhoton_n_det_end.push_back(1);
+
+//        CreateTree::Instance()->opPhoton_waveLength_det.push_back(MyMaterials::fromEvToNm(theTrack->GetTotalEnergy()/eV) );
+//        CreateTree::Instance()->opPhoton_time_det.push_back( theTrack->GetGlobalTime()/nanosecond );
+//        CreateTree::Instance()->opPhoton_trackLength_det.push_back( theTrack->GetTrackLength()/m );
+	theTrack->SetTrackStatus(fKillTrackAndSecondaries);
+      }//definition of detected photon
+
       
     } // do this cycle only IF info on optical photons is needed
   } // optical photon

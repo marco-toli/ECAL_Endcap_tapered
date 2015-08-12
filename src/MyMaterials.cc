@@ -1176,7 +1176,7 @@ G4Material* MyMaterials::PWO(double mu_ind)
       2.53029 * eV, 2.583 * eV, 2.63796 * eV, 2.69531 * eV, 2.7552 * eV, 2.81782 * eV, 2.88335 * eV, 2.952 * eV, 3.024 * eV, 3.0996 * eV,
       3.17908 * eV, 3.26274 * eV, 3.35092 * eV, 3.44401 * eV, 3.54241 * eV, 3.64659 * eV, 3.7571 * eV, 3.87451 * eV, 3.99949 * eV, 4.13281 * eV };
 
-      double att0 = 5;
+      double att0 = 25;
       G4double Absorption[nEntries_ABS] =
     { 3110 *att0*mm, 3110 *att0*mm, 3110 *att0*mm, 3110 *att0*mm, 3110 *att0*mm, 3105 *att0*mm, 3105 *att0*mm, 3105 *att0*mm, 3105 *att0*mm, 3105 *att0*mm,
       3105 *att0*mm, 2745 *att0*mm, 2460 *att0*mm, 2230 *att0*mm, 2039 *att0*mm, 1877 *att0*mm, 1859 *att0*mm, 1826 *att0*mm, 1764 *att0*mm, 1760 *att0*mm,
