@@ -21,16 +21,8 @@ public:
   static G4Material* Silicon();
   static G4Material* Brass();
   static G4Material* Tungsten();
-  static G4Material* Quartz();
   static G4Material* OpticalGrease();
-  static G4Material* LSO();
-  static G4Material* LYSO();
-  static G4Material* LYSO_lowLY();
-  static G4Material* LuAG_Ce();
-  static G4Material* LuAG_Pr();
   static G4Material* PWO(double mu_ind);
-  static G4Material* DSBCe();
-  static G4Material* SiO2Ce();
   
   static G4double fromNmToEv(G4double wavelength);
   static G4double fromEvToNm(G4double energy);
